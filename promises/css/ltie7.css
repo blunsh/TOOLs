@@ -1,0 +1,46 @@
+* html .png {
+	background: none;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='fixed', src='http://domain.tld/path/image.png');
+}
+
+* html .png{
+behavior: expression((this.runtimeStyle.behavior="none")&&(this.pngSet?this.pngSet=true:(this.nodeName == "IMG" && this.src.toLowerCase().indexOf('.png')>-1?(this.runtimeStyle.backgroundImage = "none",
+this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+this.src = "images/none.gif"):(this.origBg = this.origBg? this.origBg :this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+this.runtimeStyle.backgroundImage = "none")),this.pngSet=true)
+);
+}
+
+* html .alphabet{
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#c5d8df', EndColorStr='#f5fcfe');
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#c5d8df', EndColorStr='#f5fcfe')";
+}
+
+/*min-width и max-width в IE6*/
+#container
+{
+	min-width: 600px;
+	max-width: 1200px;
+	width:expression(document.body.clientWidth < 600? "600px" : document.body.clientWidth > 1200? "1200px" : "auto");
+}
+
+/*Ёмул€ци€ position:fixed*/
+#divFixed { 
+	position: absolute; 
+	top: expression(0+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+'px'); 
+	left: expression(0+((e=document.documentElement.scrollLeft)?e:document.body.scrollLeft)+'px');} 
+}
+   
+/*¬ертикальное выравнивание в CSS
+    <div id="out">
+       <p id="centered">...</p>
+    </div>
+#out{
+   height:500px;
+   display:table-cell;
+   vertical-align:middle;
+}*/
+#centered {
+   margin-top: expression(((outer.offsetHeight/2)-parseInt(offsetHeight)/2)&lt;0 ? "0" : (centered.offsetHeight/2)-(parseInt(offsetHeight)/2) +'px');
+}
